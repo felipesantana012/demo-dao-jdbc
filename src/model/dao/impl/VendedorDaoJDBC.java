@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import db.DB;
 import db.DbException;
@@ -96,6 +99,51 @@ public class VendedorDaoJDBC implements VendedorDao{
 	public List<Vendedor> findAll() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Vendedor> findByDepartamento(Departamento departamento) {
+		
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		
+		try {
+			st = conn.prepareStatement("SELECT vendedor.*,departamento.Nome as DepNome "
+					+ "FROM vendedor INNER JOIN departamento "
+					+ "ON vendedor.DepartamentoId = departamento.Id "
+					+ "where DepartamentoId = ? "
+					+ "ORDER BY Nome");
+			
+			st.setInt(1, departamento.getId());
+			rs = st.executeQuery();
+			List <Vendedor> list = new ArrayList<>();
+			Map<Integer, Departamento> map = new HashMap<>();
+			
+			while(rs.next()) {
+				//verificando se dep ja existe no map
+				Departamento dep = map.get(rs.getInt("DepartamentoId"));
+				
+				if(dep == null) {
+					 dep = instanciarDepartamento(rs);
+					 //adicionando no o id no map, para quando for buscar novamente ele ja vai exitir e não vai retornar null
+					map.put(rs.getInt("DepartamentoId"), dep);
+				}
+				
+				Vendedor vend = instanciarVendedor(rs, dep);
+				list.add(vend);
+				
+			}
+			return list;
+		}
+		catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
+		
+		
 	}
 	
 
