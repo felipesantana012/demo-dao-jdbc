@@ -28,6 +28,16 @@ public class Programa {
 			System.out.println(v);
 		}
 		
+		System.out.println();
+		
+		System.out.println("==== Teste 03 : Vendedor findByAll ====");
+		 dep = new Departamento(2,null);
+		 list = vendedorDao.findAll();
+		for(Vendedor v : list) {
+			System.out.println(v);
+		}
+		
+		
 		
 
 	}
