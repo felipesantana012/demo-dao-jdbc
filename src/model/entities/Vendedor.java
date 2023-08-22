@@ -11,22 +11,22 @@ public class Vendedor implements Serializable{
 	private Integer id;
 	private String nome;
 	private String email;
-	private Date dataNasc;
 	private Double salarioBase;
+	private Date dataNasc;
 	private Departamento departamento;
 	
 	public Vendedor() {
 
 	}
 
-	public Vendedor(Integer id, String nome, String email, Date dataNasc, Double salarioBase,
+	public Vendedor(Integer id, String nome, String email, Double salarioBase, Date dataNasc,
 			Departamento departamento) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		this.dataNasc = dataNasc;
 		this.salarioBase = salarioBase;
+		this.dataNasc = dataNasc;
 		this.departamento = departamento;
 	}
 
