@@ -21,6 +21,7 @@ public class Programa {
 		
 		System.out.println();
 		
+		
 		System.out.println("==== Teste 02 : Vendedor findByDepartamento ====");
 		Departamento dep = new Departamento(2,null);
 		List<Vendedor> list = vendedorDao.findByDepartamento(dep);
@@ -36,6 +37,15 @@ public class Programa {
 		for(Vendedor v : list) {
 			System.out.println(v);
 		}
+		
+		
+		System.out.println("==== Teste 04 : Vendedor Insert  ====");
+		Vendedor novoVend = new Vendedor(null, "Gref", "greg@gmail.com", 4000.0, new Date(), dep);
+		 vendedorDao.insert(novoVend);
+			System.out.println("Insert! Novo Id = " + novoVend.getId());
+		
+		
+		
 		
 		
 		
