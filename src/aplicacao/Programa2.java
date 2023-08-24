@@ -38,12 +38,13 @@ public class Programa2 {
 		
 		System.out.println("==== Teste 04 Update Departamento");
 		dep = departamentoDao.findById(7);
-		dep.setNome("Esportes");
+		dep.setNome("Esporteeees");
 		departamentoDao.update(dep);
 		System.out.println("Update Realizado");
 		
-		
-		
+		System.out.println("==== Teste 05 Delete Departamento");
+		departamentoDao.deleteById(8);
+		System.out.println("Delete Realizado");
 		
 		
 
