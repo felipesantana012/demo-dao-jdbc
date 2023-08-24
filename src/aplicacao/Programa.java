@@ -52,6 +52,10 @@ public class Programa {
 		System.out.println("Update Realizado");
 		
 		
+		System.out.println("==== Teste 06 : Vendedor Deletar  ====");
+		vendedorDao.deleteById(11);
+		System.out.println("Delete Realizado");
+		
 
 	}
 
